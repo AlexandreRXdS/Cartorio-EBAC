@@ -62,39 +62,61 @@ int registro() //Função que controla o registro de usuários
 		fclose(file);
 		
 		printf("O usuário foi cadastrado com sucesso\n\n");
-		
-		system("pause");
-		
-		system("cls");
-		
-		int opcao=0;
-		
-		printf("Gostaria de cadastrar outro usuário?\n");
-		printf("1 - Sim\n"); 		
-		printf("2 - Não\n\n");
-		printf("Opção: ");
-		
-		if(scanf("%d", &opcao) == 1)
-		{
-			system("cls");				
-			
-			//inicio da das funções
-			switch(opcao)
-			{
-				case 1:
-					registro();
-					break;
-				
-				case 2:
-					break;
-			}
-		}
+		cadastrarOutroUsuario();
+		system("pause");	
+	
 	}
 	else
 	{
 		printf("O usuário já está cadastrado\n");
+		cadastrarOutroUsuario();
 		system("pause");
 	}
+}
+
+int cadastrarOutroUsuario()
+{
+	int opcao=0;
+	int laco = 1;
+		
+		while (laco == 1)
+		{
+		    system("cls");
+		
+		    printf("Gostaria de cadastrar outro usuário?\n");
+		    printf("1 - Sim\n");
+		    printf("2 - Não\n\n");
+		    printf("Opção: ");
+		
+		    if (scanf("%d", &opcao) == 1) 
+			{
+		        system("cls");
+		
+		        switch (opcao) 
+				{
+		            case 1:
+		                registro();
+		                break;
+		
+		            case 2:
+		                laco = 0;
+		                printf("Voltando ao menu principal\n");
+		                break;
+		
+		            default:
+		                printf("Essa opção não está disponível\n");
+		                system("pause");
+		                break;
+		        }
+		    } 
+			else 
+			{
+				system("cls");
+		        printf("Entrada inválida. Tente novamente.\n");
+		        fflush(stdin);
+		        system("pause");
+		    }
+		}
 }
 
 int consulta()
