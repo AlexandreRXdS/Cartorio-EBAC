@@ -61,62 +61,56 @@ int registro() //Função que controla o registro de usuários
 		fprintf(file,cargo);
 		fclose(file);
 		
-		printf("O usuário foi cadastrado com sucesso\n\n");
+		printf("O usuário foi cadastrado com sucesso\n");
+		system("pause");
 		cadastrarOutroUsuario();
-		system("pause");	
-	
 	}
 	else
 	{
 		printf("O usuário já está cadastrado\n");
-		cadastrarOutroUsuario();
 		system("pause");
+		cadastrarOutroUsuario();
 	}
 }
 
 int cadastrarOutroUsuario()
 {
 	int opcao=0;
-	int laco = 1;
+	
+	system("cls");
 		
-		while (laco == 1)
+	printf("Gostaria de cadastrar outro usuário?\n");
+	printf("1 - Sim\n");
+	printf("2 - Não\n\n");
+	printf("Opção: ");
+		
+	if (scanf("%d", &opcao) == 1) 
+	{
+	system("cls");
+		
+		switch (opcao) 
 		{
-		    system("cls");
+		    case 1:
+		        registro();
+		        break;
 		
-		    printf("Gostaria de cadastrar outro usuário?\n");
-		    printf("1 - Sim\n");
-		    printf("2 - Não\n\n");
-		    printf("Opção: ");
+		    case 2:
+		        break;
 		
-		    if (scanf("%d", &opcao) == 1) 
-			{
-		        system("cls");
-		
-		        switch (opcao) 
-				{
-		            case 1:
-		                registro();
-		                break;
-		
-		            case 2:
-		                laco = 0;
-		                printf("Voltando ao menu principal\n");
-		                break;
-		
-		            default:
-		                printf("Essa opção não está disponível\n");
-		                system("pause");
-		                break;
-		        }
-		    } 
-			else 
-			{
-				system("cls");
-		        printf("Entrada inválida. Tente novamente.\n");
-		        fflush(stdin);
+		    default:
+		        printf("Essa opção não está disponível\n");
 		        system("pause");
-		    }
+		        break;
 		}
+	} 
+	else 
+	{
+		system("cls");
+		printf("Opção inválida.Tente novamente.\n");
+		fflush(stdin);
+		system("pause");
+		cadastrarOutroUsuario();
+	}	
 }
 
 int consulta()
@@ -179,6 +173,7 @@ int main()
 	int laco=1;
 	char senhaDigitada[40]="a";
 	int comparacao;
+	
 	system("cls");
 	
 	setlocale(LC_ALL, "Portuguese");
